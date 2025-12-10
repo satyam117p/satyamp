@@ -836,7 +836,8 @@ footer {
     right: 0;
     bottom: 0;
     /* lighter overlay so the photo appears brighter on mobile */
-    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.20) 100%);
+   background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.40) 100%);
+
     z-index: -1;
 }
 
@@ -860,7 +861,7 @@ footer {
     right: 0;
     bottom: 0;
     z-index: -2;
-    opacity: 1; /* show full photo on mobile */
+    opacity: 0.5; /* show full photo on mobile */
 }
 
     .hero-image img {
@@ -1048,4 +1049,5 @@ footer {
         font-size: 1.4rem;
     }
 }
+
 
