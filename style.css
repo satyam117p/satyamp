@@ -828,15 +828,18 @@ footer {
         position: relative;
     }
 
-    .hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%);
-        z-index: -1;
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* lighter overlay so the photo appears brighter on mobile */
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.20) 100%);
+    z-index: -1;
+}
+
     }
 
     .hero-content {
@@ -851,14 +854,14 @@ footer {
     }
 
     .hero-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -2;
-        opacity: 0.3;
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    opacity: 1; /* show full photo on mobile */
+}
 
     .hero-image img {
         width: 100%;
@@ -1045,3 +1048,4 @@ footer {
         font-size: 1.4rem;
     }
 }
+
