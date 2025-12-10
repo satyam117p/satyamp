@@ -860,7 +860,7 @@ footer {
     right: 0;
     bottom: 0;
     z-index: -2;
-    opacity: 0.4; /* show full photo on mobile */
+    opacity: 0.5; /* show full photo on mobile */
 }
 
     .hero-image img {
@@ -1048,6 +1048,7 @@ footer {
         font-size: 1.4rem;
     }
 }
+
 
 
 
