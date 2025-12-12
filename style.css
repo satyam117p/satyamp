@@ -948,3 +948,21 @@ footer {
 @media (min-width: 1200px) {
   .hero-image img { filter: brightness(0.55) contrast(0.98) saturate(0.95) !important; -webkit-filter: brightness(0.55) contrast(0.98) saturate(0.95) !important; }
 }
+/* ===== DESKTOP HERO — brighter + slightly larger ===== */
+@media (min-width: 769px) {
+
+  .hero-image img {
+
+    /* ---- MAKE IMAGE LARGER ---- */
+    max-width: 65vw !important;      /* was 55vw — 10% larger */
+    max-height: calc(100vh - 110px) !important; /* little more height room */
+
+    /* ---- MAKE IMAGE BRIGHTER ---- */
+    filter: brightness(0.70) contrast(1.02) saturate(1.05) !important;
+    -webkit-filter: brightness(0.70) contrast(1.02) saturate(1.05) !important;
+
+    /* face still visible */
+    object-position: center 28% !important;
+  }
+}
+
