@@ -1078,29 +1078,43 @@ footer {
 }
 /* Desktop hero overlay fix */
 /* Force desktop hero dimming overlay (stronger rules) */
+/* ===== DESKTOP HERO DIMMING - REPLACEMENT (paste at end, replace old desktop hero block) ===== */
 @media (min-width: 769px) {
-  .hero { position: relative !important; }
+  .hero {
+    position: relative !important;
+    overflow: hidden; /* ensure absolute children don't overflow */
+  }
 
   /* overlay placed above image but below text */
   .hero::before {
     content: "";
     position: absolute !important;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)) !important;
+    inset: 0; /* shorthand for top/right/bottom/left 0 */
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.60) 0%,
+      rgba(0,0,0,0.65) 100%
+    ) !important;
     z-index: 2 !important;
     pointer-events: none;
   }
 
   /* ensure the image sits below the overlay */
-  .hero-image,
-  .hero-image img {
+  .hero-image {
     position: absolute !important;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
+    z-index: 1 !important;
+    display: block !important;
+  }
+
+  .hero-image img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
+    object-position: center center !important; /* center the face better on desktop */
     z-index: 1 !important;
-    filter: brightness(0.75) !important;
+    /* stronger brightness + remove drop-shadow by overriding filter */
+    filter: brightness(0.60) saturate(0.95) !important;
+    transition: filter 300ms ease;
   }
 
   /* text/content above overlay */
@@ -1109,6 +1123,7 @@ footer {
     z-index: 3 !important;
   }
 }
+
 
 
 
