@@ -195,3 +195,45 @@ document.addEventListener('DOMContentLoaded', function () {
     if (typingTimeoutId) clearTimeout(typingTimeoutId);
   });
 });
+// ===== FORCE HERO OVERLAY + FORCE IMAGE FILTER (put at end of script.js) =====
+(function forceHeroLook(){
+  try {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    // 1) add overlay element if not present
+    if (!hero.querySelector('.__forced-overlay')) {
+      const ov = document.createElement('div');
+      ov.className = '__forced-overlay';
+      hero.appendChild(ov);
+    }
+
+    // 2) find image vs background-image
+    const img = hero.querySelector('.hero-image img');
+    if (img) {
+      // remove any drop-shadow or inline filter and set our desired brightness
+      img.style.boxShadow = 'none';
+      img.style.filter = 'brightness(0.75) saturate(1) contrast(1)';
+      img.style.webkitFilter = 'brightness(0.75) saturate(1) contrast(1)';
+      img.style.objectFit = 'cover';
+      img.style.objectPosition = 'center 40%';
+      img.style.pointerEvents = 'none';
+    } else {
+      // if hero uses background-image on .hero or .hero-image
+      const target = hero.matches('[style*="background-image"]') ? hero : (hero.querySelector('.hero-image') || hero);
+      if (target) {
+        // apply a semi-transparent black overlay via inline style just in case
+        target.style.backgroundBlendMode = 'multiply';
+        target.style.backgroundColor = 'rgba(0,0,0,0.45)';
+        // if background-image had its own brightness from CSS, this overlay will darken it
+      }
+    }
+
+    // Re-apply after a short delay (covers cases where image loads later)
+    setTimeout(forceHeroLook, 600);
+  } catch(e) {
+    // don't break page if something goes wrong
+    console.warn('forceHeroLook error', e);
+  }
+})();
+
