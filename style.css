@@ -1080,49 +1080,60 @@ footer {
 /* Force desktop hero dimming overlay (stronger rules) */
 /* ===== DESKTOP HERO DIMMING - REPLACEMENT (paste at end, replace old desktop hero block) ===== */
 /* ===== DESKTOP HERO - LIGHTER / FACE VISIBLE ===== */
+/* ===== GUARANTEED HERO OVERRIDE (paste at very end of style.css) ===== */
+.hero {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* overlay always on top of the image */
+.hero .__forced-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 9998 !important;
+  pointer-events: none !important;
+  background: linear-gradient(180deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.55) 100%) !important;
+}
+
+/* image container cover/or img override */
+.hero .hero-image,
+.hero .hero-image img,
+.hero {
+  -webkit-filter: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+/* provide a forced filter for any image (desktop) */
 @media (min-width: 769px) {
-  .hero {
-    position: relative !important;
-    overflow: hidden;
-  }
-
-  /* lighter overlay so face stays visible */
-  .hero::before {
-    content: "";
-    position: absolute !important;
-    inset: 0;
-    background: linear-gradient(180deg,
-      rgba(0,0,0,0.35) 0%,
-      rgba(0,0,0,0.45) 100%
-    ) !important;
-    z-index: 2 !important;
-    pointer-events: none;
-  }
-
-  .hero-image {
-    position: absolute !important;
-    inset: 0;
-    z-index: 1 !important;
-    display: block !important;
-  }
-
-  .hero-image img {
-    width: 100% !important;
-    height: 100% !important;
+  .hero img,
+  .hero .hero-image img {
+    filter: brightness(0.75) saturate(1) contrast(1) !important;
+    -webkit-filter: brightness(0.75) saturate(1) contrast(1) !important;
+    box-shadow: none !important;
     object-fit: cover !important;
-    /* move image slightly up so face is centered nicely on desktop */
     object-position: center 40% !important;
-    z-index: 1 !important;
-    /* brighter than before so face visible */
-    filter: brightness(0.82) saturate(1) !important;
-    transition: filter 220ms ease, object-position 220ms ease;
-  }
-
-  .hero-content {
-    position: relative !important;
-    z-index: 3 !important;
+    z-index: 9997 !important;
+    pointer-events: none !important;
   }
 }
+
+/* mobile slightly darker (keep existing mobile look) */
+@media (max-width: 768px) {
+  .hero img,
+  .hero .hero-image img {
+    filter: brightness(0.60) !important;
+    -webkit-filter: brightness(0.60) !important;
+    object-position: top center !important;
+  }
+
+  .hero .__forced-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.85) 100%) !important;
+  }
+}
+
+/* ensure content above overlay */
+.hero-content { position: relative !important; z-index: 9999 !important; }
 
 
 
